@@ -7,7 +7,7 @@ const port = process.env.PORT || 8888;
 
 // Endpoint to initiate OAuth2 flow
 app.get('/login', (req, res) => {
-    const scope = 'email users';
+    const scope = 'email identity';
     const redirectUri = encodeURIComponent(process.env.PATREON_REDIRECT_URI);
     const authUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${process.env.PATREON_CLIENT_ID}&redirect_uri=${redirectUri}&scope=${scope}`;
     res.redirect(authUrl);
