@@ -7,11 +7,12 @@ const port = process.env.PORT || 8888;
 
 // Endpoint to initiate OAuth2 flow
 app.get('/login', (req, res) => {
-    const scope = 'email identity';
+    const scope = 'email users';
     const redirectUri = encodeURIComponent(process.env.PATREON_REDIRECT_URI);
     const authUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${process.env.PATREON_CLIENT_ID}&redirect_uri=${redirectUri}&scope=${scope}`;
     res.redirect(authUrl);
 });
+
 
 // Endpoint to handle the redirect from Patreon
 app.get('/callback', async (req, res) => {
@@ -36,12 +37,17 @@ app.get('/callback', async (req, res) => {
         const accessToken = tokenResponse.data.access_token;
         const refreshToken = tokenResponse.data.refresh_token;
 
-        // Use the access token to get user information
+        // Use the access token to get user information from /identity endpoint
         const userInfoResponse = await axios.get(
-            'https://www.patreon.com/api/oauth2/v2/user',
+            'https://www.patreon.com/api/oauth2/v2/identity',
             {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
+                },
+                params: {
+                    fields: {
+                        user: 'about,created,email,first_name,full_name,image_url,last_name,social_connections,thumb_url,url,vanity'
+                    }
                 }
             }
         );
@@ -53,6 +59,7 @@ app.get('/callback', async (req, res) => {
         res.status(500).send('Failed to authenticate with Patreon');
     }
 });
+
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
