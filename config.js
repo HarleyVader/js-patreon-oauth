@@ -1,5 +1,5 @@
 // config.js
-
+require('dotenv').config();
 
 module.exports = {
     clientId: process.env.PATREON_CLIENT_ID,

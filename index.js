@@ -3,7 +3,7 @@ const http = require('http');
 const config = require('./config');
 const oauthHandler = require('./oautHandler');
 
-require('dotenv').config();
+
 
 const PORT = process.env.PORT || 3000;
 
