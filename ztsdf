@@ -1,0 +1,12 @@
+# Use curl to test if the token works with another endpoint
+curl -H "Authorization: Bearer TESjS7y_XqyKGY9BIYzW1EL-Gnmsyjbb_nIOndbk1bs" https://api.patreon.com/oauth2/v2/campaigns
+
+
+curl -X POST https://oauth.patreon.com/oauth/token \
+     -d "client_id=Oa0xwQg1snEXbgItdxB-8YDo2EcKi9XiTw3H_feSHDH1ST7rufMTmGzyGpMfL0jI" \
+     -d "client_secret=kPM5Elw2TbHnRvmzz8Ee5i90iLy5dsOIA6lTmGGfyNMNSgHc_hYSAQ4lGSLINDFx" \
+     -d "code=Bearer TESjS7y_XqyKGY9BIYzW1EL-Gnmsyjbb_nIOndbk1bs" \
+     -d "grant_type=authorization_code" \
+     -d "scope=identity identity.email"
+
+
