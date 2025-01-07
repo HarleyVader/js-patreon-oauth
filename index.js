@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const config = require('./config');
-const oauthHandler = require('./oautHandler');
+const oauthHandler = require('./oauthHandler');
 const apiClient = require('./apiClient');
 
 const app = express();
