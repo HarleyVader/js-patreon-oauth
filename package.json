@@ -1,13 +1,13 @@
 {
   "dependencies": {
     "axios": "^1.7.9",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
   },
   "name": "js-patreon-oauth",
   "version": "0.0.1",
   "description": "commonjs patreon Oauth2",
   "main": "#",
-  "devDependencies": {},
   "scripts": {
     "test": "node index.js"
   },
