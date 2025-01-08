@@ -1,4 +1,3 @@
-// oauthHandler.js
 const qs = require('querystring');
 const axios = require('axios');
 
