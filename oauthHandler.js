@@ -25,12 +25,16 @@ module.exports.handleCallback = async (req, res, config) => {
   }
 
   try {
-    const tokenResponse = await axios.post('https://www.patreon.com/api/oauth2/token', {
+    const tokenResponse = await axios.post('https://www.patreon.com/api/oauth2/token', qs.stringify({
       code: query.code,
       grant_type: 'authorization_code',
       client_id: config.clientId,
       client_secret: config.clientSecret,
       redirect_uri: config.redirectUri,
+    }), {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
     });
 
     console.log('Token response:', tokenResponse.data);
