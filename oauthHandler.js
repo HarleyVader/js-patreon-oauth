@@ -45,7 +45,7 @@ module.exports.handleCallback = async (req, res, config) => {
     console.log('Access Token:', access_token);
     console.log('Refresh Token:', refresh_token);
 
-    res.writeHead(302, { Location: '/success' });
+    res.writeHead(302, { Location: '/profile' });
     res.end();
   } catch (error) {
     console.error('Error during OAuth2 callback:', error);
