@@ -40,10 +40,16 @@ router.get('/profile', async (req, res) => {
 
   try {
     const userData = await apiClient.getUserData(accessToken);
-    const { attributes } = userData.data;
+    const user = userData.data.attributes;
+    const memberships = userData.included.filter(item => item.type === 'member');
+    const addresses = userData.included.filter(item => item.type === 'address');
+    const tiers = userData.included.filter(item => item.type === 'tier');
 
     res.render('profile', {
-      user: attributes,
+      user,
+      memberships,
+      addresses,
+      tiers,
     });
   } catch (error) {
     console.error('Error fetching user data:', error);

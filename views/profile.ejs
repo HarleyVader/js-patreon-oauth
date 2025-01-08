@@ -22,6 +22,8 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       text-align: center;
+      width: 80%;
+      max-width: 800px;
     }
     .profile-container img {
       border-radius: 50%;
@@ -34,6 +36,20 @@
     .profile-container p {
       margin: 5px 0;
     }
+    .profile-section {
+      margin-top: 20px;
+      text-align: left;
+    }
+    .profile-section h2 {
+      margin-bottom: 10px;
+    }
+    .profile-section ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .profile-section ul li {
+      margin-bottom: 5px;
+    }
   </style>
 </head>
 <body>
@@ -45,6 +61,56 @@
     <p>About: <%= user.about %></p>
     <p>Profile URL: <a href="<%= user.url %>"><%= user.url %></a></p>
     <p>Joined: <%= new Date(user.created).toLocaleDateString() %></p>
+
+    <% if (memberships.length > 0) { %>
+      <div class="profile-section">
+        <h2>Memberships</h2>
+        <% memberships.forEach(membership => { %>
+          <ul>
+            <li>Full Name: <%= membership.attributes.full_name %></li>
+            <li>Is Follower: <%= membership.attributes.is_follower %></li>
+            <li>Last Charge Date: <%= membership.attributes.last_charge_date %></li>
+            <li>Lifetime Support Cents: <%= membership.attributes.lifetime_support_cents %></li>
+            <li>Currently Entitled Amount Cents: <%= membership.attributes.currently_entitled_amount_cents %></li>
+            <li>Patron Status: <%= membership.attributes.patron_status %></li>
+          </ul>
+        <% }) %>
+      </div>
+    <% } %>
+
+    <% if (addresses.length > 0) { %>
+      <div class="profile-section">
+        <h2>Addresses</h2>
+        <% addresses.forEach(address => { %>
+          <ul>
+            <li>Addressee: <%= address.attributes.addressee %></li>
+            <li>City: <%= address.attributes.city %></li>
+            <li>Line 1: <%= address.attributes.line_1 %></li>
+            <li>Line 2: <%= address.attributes.line_2 %></li>
+            <li>Phone Number: <%= address.attributes.phone_number %></li>
+            <li>Postal Code: <%= address.attributes.postal_code %></li>
+            <li>State: <%= address.attributes.state %></li>
+          </ul>
+        <% }) %>
+      </div>
+    <% } %>
+
+    <% if (tiers.length > 0) { %>
+      <div class="profile-section">
+        <h2>Tiers</h2>
+        <% tiers.forEach(tier => { %>
+          <ul>
+            <li>Title: <%= tier.attributes.title %></li>
+            <li>Description: <%= tier.attributes.description %></li>
+            <li>Amount Cents: <%= tier.attributes.amount_cents %></li>
+            <li>Created At: <%= new Date(tier.attributes.created_at).toLocaleDateString() %></li>
+            <li>Published At: <%= new Date(tier.attributes.published_at).toLocaleDateString() %></li>
+            <li>Requires Shipping: <%= tier.attributes.requires_shipping %></li>
+            <li>URL: <a href="<%= tier.attributes.url %>"><%= tier.attributes.url %></a></li>
+          </ul>
+        <% }) %>
+      </div>
+    <% } %>
   </div>
 </body>
 </html>

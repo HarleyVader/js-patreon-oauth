@@ -27,6 +27,10 @@ module.exports.getUserData = async (accessToken) => {
     },
     params: {
       'fields[user]': 'email,full_name,vanity,url,image_url,about,created,first_name,last_name,thumb_url',
+      'include': 'memberships,memberships.currently_entitled_tiers,memberships.address',
+      'fields[member]': 'full_name,is_follower,last_charge_date,lifetime_support_cents,currently_entitled_amount_cents,patron_status',
+      'fields[address]': 'addressee,city,line_1,line_2,phone_number,postal_code,state',
+      'fields[tier]': 'amount_cents,created_at,description,discord_role_ids,edited_at,patron_count,published,published_at,requires_shipping,title,url',
     },
   });
 
