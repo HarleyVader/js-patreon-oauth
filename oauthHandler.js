@@ -17,6 +17,13 @@ module.exports.handleCallback = async (req, res, config) => {
   const urlParts = req.url.split('?');
   const query = qs.parse(urlParts[1]);
 
+  console.log('Received code:', query.code);
+  console.log('Received state:', query.state);
+
+  if (!query.code) {
+    return res.writeHead(400, { 'Content-Type': 'text/plain' }).end('Missing code parameter');
+  }
+
   try {
     const tokenResponse = await axios.post('https://www.patreon.com/api/oauth2/token', {
       code: query.code,
@@ -25,6 +32,8 @@ module.exports.handleCallback = async (req, res, config) => {
       client_secret: config.clientSecret,
       redirect_uri: config.redirectUri,
     });
+
+    console.log('Token response:', tokenResponse.data);
 
     const { access_token, refresh_token } = tokenResponse.data;
 
@@ -35,7 +44,7 @@ module.exports.handleCallback = async (req, res, config) => {
     res.writeHead(302, { Location: '/success' });
     res.end();
   } catch (error) {
-    console.error(error);
+    console.error('Error during OAuth2 callback:', error);
     res.writeHead(500, { 'Content-Type': 'text/plain' });
     res.end('Internal Server Error');
   }
