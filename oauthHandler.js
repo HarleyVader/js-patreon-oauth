@@ -40,7 +40,10 @@ module.exports.handleCallback = async (req, res, config) => {
 
     const { access_token, refresh_token } = tokenResponse.data;
 
-    // Store the tokens securely (e.g., in a session or database)
+    // Store the tokens securely in the session
+    req.session.accessToken = access_token;
+    req.session.refreshToken = refresh_token;
+
     console.log('Access Token:', access_token);
     console.log('Refresh Token:', refresh_token);
 

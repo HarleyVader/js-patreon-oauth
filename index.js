@@ -33,6 +33,7 @@ router.get('/callback', (req, res) => {
 router.get('/oauth2/callback', (req, res) => {
   oauthHandler.handleCallback(req, res, config);
 });
+
 router.get('/profile', async (req, res) => {
   const accessToken = req.session.accessToken;
   if (!accessToken) return res.redirect('/login');
