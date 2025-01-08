@@ -5,6 +5,7 @@ const oauthHandler = require('./oauthHandler.js');
 const apiClient = require('./apiClient');
 
 const app = express();
+const router = express.Router();
 
 // Middleware for session management
 app.use(session({
@@ -20,18 +21,19 @@ app.use(express.urlencoded({ extended: true }));
 // Set the view engine to ejs
 app.set('view engine', 'ejs');
 
-// Route for login
-app.get('/login', (req, res) => {
+// Add the router routes here
+router.get('/login', (req, res) => {
   oauthHandler.handleLogin(req, res, config);
 });
 
-// Route for OAuth callback
-app.get('/callback', (req, res) => {
+router.get('/callback', (req, res) => {
   oauthHandler.handleCallback(req, res, config);
 });
 
-// Route for profile
-app.get('/profile', async (req, res) => {
+router.get('/oauth2/callback', (req, res) => {
+  oauthHandler.handleCallback(req, res, config);
+});
+router.get('/profile', async (req, res) => {
   const accessToken = req.session.accessToken;
   if (!accessToken) return res.redirect('/login');
 
@@ -50,6 +52,8 @@ app.get('/profile', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+app.use('/', router);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
