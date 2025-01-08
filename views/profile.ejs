@@ -22,7 +22,7 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       text-align: center;
-      width: 80%;
+      width: 90%;
       max-width: 800px;
     }
     .profile-container img {
@@ -50,6 +50,15 @@
     .profile-section ul li {
       margin-bottom: 5px;
     }
+    @media (max-width: 600px) {
+      .profile-container {
+        padding: 10px;
+      }
+      .profile-container img {
+        width: 100px;
+        height: 100px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -69,7 +78,7 @@
           <ul>
             <li>Full Name: <%= membership.attributes.full_name %></li>
             <li>Is Follower: <%= membership.attributes.is_follower %></li>
-            <li>Last Charge Date: <%= membership.attributes.last_charge_date %></li>
+            <li>Last Charge Date: <%= membership.attributes.last_charge_date ? new Date(membership.attributes.last_charge_date).toLocaleDateString() : '' %></li>
             <li>Lifetime Support Cents: <%= membership.attributes.lifetime_support_cents %></li>
             <li>Currently Entitled Amount Cents: <%= membership.attributes.currently_entitled_amount_cents %></li>
             <li>Patron Status: <%= membership.attributes.patron_status %></li>
@@ -106,7 +115,7 @@
             <li>Created At: <%= new Date(tier.attributes.created_at).toLocaleDateString() %></li>
             <li>Published At: <%= new Date(tier.attributes.published_at).toLocaleDateString() %></li>
             <li>Requires Shipping: <%= tier.attributes.requires_shipping %></li>
-            <li>URL: <a href="<%= tier.attributes.url %>"><%= tier.attributes.url %></a></li>
+            <li>URL: <a href="https://www.patreon.com<%= tier.attributes.url %>"><%= tier.attributes.url %></a></li>
           </ul>
         <% }) %>
       </div>
