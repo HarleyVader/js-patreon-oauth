@@ -1,4 +1,3 @@
-// oauthHandler.js
 const qs = require('querystring');
 const axios = require('axios');
 
@@ -45,6 +44,8 @@ module.exports.handleCallback = async (req, res, config) => {
     console.log('Access Token:', access_token);
     console.log('Refresh Token:', refresh_token);
 
+    // Redirect to /profile if successful
+    console.log('Redirecting to /profile');
     res.writeHead(302, { Location: '/profile' });
     res.end();
   } catch (error) {
