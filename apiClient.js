@@ -26,7 +26,7 @@ module.exports.getUserData = async (accessToken) => {
       'Accept': 'application/vnd.api+json',
     },
     params: {
-      'fields[user]': 'email,full_name',
+      'fields[user]': 'email,full_name,vanity,url,image_url,about,created,first_name,last_name,thumb_url',
     },
   });
 

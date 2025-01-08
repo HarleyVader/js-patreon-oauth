@@ -40,13 +40,10 @@ router.get('/profile', async (req, res) => {
 
   try {
     const userData = await apiClient.getUserData(accessToken);
-    const { attributes: { email, full_name } } = userData.data;
+    const { attributes } = userData.data;
 
     res.render('profile', {
-      user: {
-        name: full_name,
-        email,
-      },
+      user: attributes,
     });
   } catch (error) {
     console.error('Error fetching user data:', error);
