@@ -51,7 +51,7 @@ router.get('/profile', async (req, res) => {
       memberships,
       addresses,
       tiers,
-      unescape: ejs.filters.unescapeXML
+      unescape: ejs.filters.unescape
     });
   } catch (error) {
     console.error('Error fetching user data:', error);
