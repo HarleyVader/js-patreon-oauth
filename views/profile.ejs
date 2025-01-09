@@ -10,12 +10,12 @@
       background-color: #121212;
       color: #e0e0e0;
       margin: 0;
-      padding: 20px 0;
+      padding: 0;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       height: 100vh;
-      box-sizing: border-box;
+      overflow: hidden;
     }
     .profile-container {
       background-color: #1e1e1e;
@@ -25,6 +25,9 @@
       text-align: center;
       width: 90%;
       max-width: 800px;
+      margin-top: 20px;
+      overflow-y: auto;
+      max-height: calc(100vh - 40px);
     }
     .profile-container img {
       border-radius: 50%;
