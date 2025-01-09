@@ -3,6 +3,7 @@ const session = require('express-session');
 const config = require('./config');
 const oauthHandler = require('./oauthHandler.js');
 const apiClient = require('./apiClient');
+const ejs = require('ejs');
 
 const app = express();
 const router = express.Router();
@@ -50,6 +51,7 @@ router.get('/profile', async (req, res) => {
       memberships,
       addresses,
       tiers,
+      unescape: ejs.filters.unescapeXML
     });
   } catch (error) {
     console.error('Error fetching user data:', error);

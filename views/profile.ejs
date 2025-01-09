@@ -117,7 +117,7 @@
         <% tiers.forEach(tier => { %>
           <ul>
             <% Object.keys(tier.attributes).forEach(key => { %>
-              <li><strong><%= key.replace(/_/g, ' ') %>:</strong> <%= key === 'description' ? ejs.render(tier.attributes[key]) : tier.attributes[key] %></li>
+              <li><strong><%= key.replace(/_/g, ' ') %>:</strong> <%= key === 'description' ? unescape(tier.attributes[key]) : tier.attributes[key] %></li>
             <% }) %>
           </ul>
         <% }) %>
