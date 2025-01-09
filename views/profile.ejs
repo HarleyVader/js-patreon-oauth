@@ -76,12 +76,9 @@
         <h2>Memberships</h2>
         <% memberships.forEach(membership => { %>
           <ul>
-            <li>Full Name: <%= membership.attributes.full_name %></li>
-            <li>Is Follower: <%= membership.attributes.is_follower %></li>
-            <li>Last Charge Date: <%= membership.attributes.last_charge_date ? new Date(membership.attributes.last_charge_date).toLocaleDateString() : '' %></li>
-            <li>Lifetime Support Cents: <%= membership.attributes.lifetime_support_cents %></li>
-            <li>Currently Entitled Amount Cents: <%= membership.attributes.currently_entitled_amount_cents %></li>
-            <li>Patron Status: <%= membership.attributes.patron_status %></li>
+            <% Object.keys(membership.attributes).forEach(key => { %>
+              <li><strong><%= key.replace(/_/g, ' ') %>:</strong> <%= membership.attributes[key] %></li>
+            <% }) %>
           </ul>
         <% }) %>
       </div>
@@ -92,13 +89,9 @@
         <h2>Addresses</h2>
         <% addresses.forEach(address => { %>
           <ul>
-            <li>Addressee: <%= address.attributes.addressee %></li>
-            <li>City: <%= address.attributes.city %></li>
-            <li>Line 1: <%= address.attributes.line_1 %></li>
-            <li>Line 2: <%= address.attributes.line_2 %></li>
-            <li>Phone Number: <%= address.attributes.phone_number %></li>
-            <li>Postal Code: <%= address.attributes.postal_code %></li>
-            <li>State: <%= address.attributes.state %></li>
+            <% Object.keys(address.attributes).forEach(key => { %>
+              <li><strong><%= key.replace(/_/g, ' ') %>:</strong> <%= address.attributes[key] %></li>
+            <% }) %>
           </ul>
         <% }) %>
       </div>
@@ -109,13 +102,9 @@
         <h2>Tiers</h2>
         <% tiers.forEach(tier => { %>
           <ul>
-            <li>Title: <%= tier.attributes.title %></li>
-            <li>Description: <%= tier.attributes.description %></li>
-            <li>Amount Cents: <%= tier.attributes.amount_cents %></li>
-            <li>Created At: <%= new Date(tier.attributes.created_at).toLocaleDateString() %></li>
-            <li>Published At: <%= new Date(tier.attributes.published_at).toLocaleDateString() %></li>
-            <li>Requires Shipping: <%= tier.attributes.requires_shipping %></li>
-            <li>URL: <a href="https://www.patreon.com<%= tier.attributes.url %>"><%= tier.attributes.url %></a></li>
+            <% Object.keys(tier.attributes).forEach(key => { %>
+              <li><strong><%= key.replace(/_/g, ' ') %>:</strong> <%= tier.attributes[key] %></li>
+            <% }) %>
           </ul>
         <% }) %>
       </div>
