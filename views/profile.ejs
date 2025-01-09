@@ -8,19 +8,20 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      background-color: #121212;
+      color: #e0e0e0;
       margin: 0;
       padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
     }
     .profile-container {
-      background-color: #fff;
+      background-color: #1e1e1e;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
       text-align: center;
       width: 90%;
       max-width: 800px;
@@ -29,9 +30,11 @@
       border-radius: 50%;
       width: 150px;
       height: 150px;
+      margin-bottom: 20px;
     }
     .profile-container h1 {
       margin: 10px 0;
+      color: #ff4081;
     }
     .profile-container p {
       margin: 5px 0;
@@ -42,6 +45,7 @@
     }
     .profile-section h2 {
       margin-bottom: 10px;
+      color: #ff4081;
     }
     .profile-section ul {
       list-style-type: none;
@@ -49,6 +53,16 @@
     }
     .profile-section ul li {
       margin-bottom: 5px;
+    }
+    .profile-section ul li strong {
+      color: #ff4081;
+    }
+    .profile-section ul li a {
+      color: #ff4081;
+      text-decoration: none;
+    }
+    .profile-section ul li a:hover {
+      text-decoration: underline;
     }
     @media (max-width: 600px) {
       .profile-container {
@@ -103,7 +117,7 @@
         <% tiers.forEach(tier => { %>
           <ul>
             <% Object.keys(tier.attributes).forEach(key => { %>
-              <li><strong><%= key.replace(/_/g, ' ') %>:</strong> <%= tier.attributes[key] %></li>
+              <li><strong><%= key.replace(/_/g, ' ') %>:</strong> <%= key === 'description' ? ejs.render(tier.attributes[key]) : tier.attributes[key] %></li>
             <% }) %>
           </ul>
         <% }) %>
